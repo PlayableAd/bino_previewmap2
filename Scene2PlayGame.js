@@ -17,7 +17,7 @@ class Scene2PlayGame extends Phaser.Scene {
         this.stairGroup = this.physics.add.group();
 
         this.stairGroup.defaults.setAllowGravity = false;
-        this.tapToPlay2 = new AssetStatic(this, this.game.scale.width / 2, this.game.scale.height / 2, "sprTapToPlay2").setScrollFactor(0).setDepth(3);
+        this.tapToPlay2 = new AssetStatic(this, this.game.scale.width / 2, this.game.scale.height / 2, "sprTapToPlay2").setScrollFactor(0).setDepth(4);
         this.tweens.add({
             targets: this.tapToPlay2,
             duration: 500,

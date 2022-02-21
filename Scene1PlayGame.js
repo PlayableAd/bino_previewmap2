@@ -550,7 +550,7 @@ class Scene1PlayGame extends Phaser.Scene {
             player.on("animationcomplete", function () {
                 player.body.setImmovable(true);
             });
-            player.onFailure(this.gameOver, this.tryAgain);
+            // player.onFailure(this.gameOver, this.tryAgain);
             endGame = true;
         }
     }
@@ -565,7 +565,7 @@ class Scene1PlayGame extends Phaser.Scene {
         });
         player.defaults.setAllowGravity = false;
         player.setImmovable(false);
-        player.onFailure(this.gameOver, this.tryAgain);
+        // player.onFailure(this.gameOver, this.tryAgain);
         endGame = true;
     }
 

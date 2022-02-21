@@ -21,6 +21,8 @@ class Player extends Entity {
         this.setData("isShooting", false);
         this.setData("timerShootDelay", 20);
         this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
+        console.log(this)
+
     }
 
     update() {
@@ -126,6 +128,8 @@ class Player extends Entity {
     }
 
     onFailure(gameOver) {
+        console.log(gameOver)
+        let thatttt = this;
         this.scene.playSound("loseSound");
         Sounds["bgSound"].pause();
         this.scene.turnRight.setVisible(false);
@@ -144,10 +148,10 @@ class Player extends Entity {
             },
             repeat: 0,
             yoyo: false,
-            onComplete: () => {        
-                this.scene.input.on("pointerdown", function () {
+            onComplete: () => {
+                gameOver.scene.input.on("pointerdown", function () {
                     window.install && window.install();
-
+                    console.log("GOTOSTORE")
                 });
             },
         });
@@ -173,10 +177,8 @@ class Player extends Entity {
             },
             repeat: 0,
             yoyo: false,
-            onComplete: () => {        
-                this.scene.input.on("pointerdown", function () {
-                    this.scene.start('Scene2PlayGame');
-                });
+            onComplete: () => {
+                this.scene.start('Scene2PlayGame');
             },
         });
     }
