@@ -1,5 +1,5 @@
 function gameStart() { }
-var nAssets = 24;
+var nAssets = 23;
 var nLoaded = 0;
 var sprMovementPlayerImg = new Image(),
     sprCoinImg = new Image(),
@@ -15,7 +15,6 @@ var sprMovementPlayerImg = new Image(),
     sprPlayerWeaponImg = new Image(),
     sprOlafImg = new Image(),
     sprMovementPrincessImg = new Image(),
-    sprDownloadNowImg = new Image(),
     sprMuteImg = new Image();
 var isControllable = true,
     isTurnRight = false,
@@ -27,7 +26,7 @@ var isUpgrade = false,
     isVentOpen = false,
     isRunning = true,
     isTap = false;
-var bgSound, jumpSound, winSound, loseSound, attackSound, collectCoinSound, hitBonusBlockSound, killEnemySound, standOnEnemySound, flagSound;
+var bgSound, jumpSound, winSound, hurraySound, loseSound, attackSound, collectCoinSound, hitBonusBlockSound, killEnemySound, standOnEnemySound, flagSound;
 var Sounds,
     isMuted = false,
     disableBgSound,
@@ -123,13 +122,6 @@ class Preload extends Phaser.Scene {
                 end: 3,
             }),
             frameRate: 10,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: "sprDownloadNowMotion",
-            frames: this.anims.generateFrameNumbers("sprDownloadNow"),
-            frameRate: 5,
             repeat: -1,
         });
 
@@ -245,6 +237,9 @@ class Preload extends Phaser.Scene {
             winSound: new Howl({
                 src: winSoundB64,
             }),
+            hurraySound: new Howl({
+                src: hurraySoundB64,
+            }),
             loseSound: new Howl({
                 src: loseSoundB64,
             }),
@@ -344,15 +339,6 @@ class Preload extends Phaser.Scene {
             nLoaded++;
         };
         sprMovementPrincessImg.src = sprMovementPrincessB64;
-
-        sprDownloadNowImg.onload = () => {
-            this.textures.addSpriteSheet("sprDownloadNow", sprDownloadNowImg, {
-                frameWidth: 154,
-                frameHeight: 50,
-            });
-            nLoaded++;
-        };
-        sprDownloadNowImg.src = sprDownloadNowB64;
 
         sprBeatleEnemyImg.onload = () => {
             this.textures.addSpriteSheet("sprBeatleEnemy", sprBeatleEnemyImg, {

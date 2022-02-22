@@ -247,7 +247,6 @@ class Scene1PlayGame extends Phaser.Scene {
         });
         this.gameOver = new AssetStatic(this, this.game.scale.width / 2, this.game.scale.height / 2, "sprGameOver").setAlpha(0).setScale(0.1).setDepth(3).setInteractive().setScrollFactor(0);
         this.gameWin = new AssetStatic(this, this.game.scale.width / 2, this.game.scale.height / 2, "sprGameWin").setAlpha(0).setScale(0.1).setDepth(3).setInteractive().setScrollFactor(0);
-        this.downloadNow = new AssetMotion(this, this.game.scale.width / 2, 40, "sprDownloadNow").setDepth(3).setInteractive().setVisible(false).setScrollFactor(0);
         disableBgSound = new AssetStatic(this, 30, 30, "sprMute").setFrame(0).setDepth(3).setInteractive().setScrollFactor(0);
         disableBgSound.on("pointerdown", function (event) {
             if (Sounds["bgSound"].playing()) {
@@ -259,9 +258,6 @@ class Scene1PlayGame extends Phaser.Scene {
                 Sounds["bgSound"].play();
                 disableBgSound.setFrame(0);
             }
-        });
-        this.downloadNow.on("pointerdown", function () {
-            window.install && window.install();
         });
 
         this.turnLeft = new AssetStatic(this, this.game.scale.width / 12, this.cameras.main.height - 30, "sprController")
@@ -351,7 +347,6 @@ class Scene1PlayGame extends Phaser.Scene {
                 this.turnRight.setVisible(true);
                 this.turnLeft.setVisible(true);
                 this.jump.setVisible(true);
-                this.downloadNow.setVisible(true);
                 this.cameras.main.startFollow(this.player);
             },
             callbackScope: this,
@@ -405,7 +400,6 @@ class Scene1PlayGame extends Phaser.Scene {
         this.turnRight.setPosition(width / 12 + 90, height - 40);
         this.jump.setPosition(width / 1.09, height - 40);
         this.fire.setPosition(width / 1.09 - 90, height - 40);
-        this.downloadNow.setPosition(width / 2, 30);
         disableBgSound.setPosition(30, 30);
     }
 
@@ -518,6 +512,7 @@ class Scene1PlayGame extends Phaser.Scene {
     }
 
     impactPrincess(player, princess) {
+        isControllable ? Sounds["hurraySound"].play() : "";
         isControllable = false;
         player.body.velocity.x = 100;
         // this.playSound("flagSound");
@@ -600,7 +595,6 @@ class Scene1PlayGame extends Phaser.Scene {
                 Sounds["bgSound"].pause();
             }
             if (endGame) {
-                this.downloadNow.setVisible(false);
                 window.gameEnd && window.gameEnd();
                 /*GameEndVungle*/
                 this.input.on("pointerdown", function () {
@@ -630,4 +624,4 @@ class Scene1PlayGame extends Phaser.Scene {
         }
     }
 }
-function gameClose() {}
+function gameClose() { }
